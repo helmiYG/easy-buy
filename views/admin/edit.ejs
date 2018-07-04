@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Edit client</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <h1>Edit Items</h1>
+    <h3>
+        <a href="/admin">back</a>
+    </h3>
+    <form action="/admin/edit/<%= itemKey.id %>/item" method="POST">
+        Item Name:
+        <br>
+        <input type="text" name="itemName" value="<%= itemKey.itemName %>">
+        <br> Availablity Status/Date:
+        <br>
+        <input type="text" name="preorderAvailablility" value="<%= itemKey.preorderAvailablility %>">
+        <br> Category :
+        <br>
+        <input type="text" name="itemCategory" value="<%= itemKey.itemCategory %>">
+        <br> Price :
+        <br>
+        <input type="text" name="price" value="<%= itemKey.price %>">
+        <br> Down Payment :
+        <br>
+        <input type="text" name="downPayment" value="<%= itemKey.downPayment %>">
+
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+
+</html>
