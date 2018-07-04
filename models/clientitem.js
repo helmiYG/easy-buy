@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
 
     ClientItem.belongsTo(models.Client)
-    ClientItem.belongsTo(models.Items)
+    ClientItem.belongsTo(models.Item)
 
   };
   return ClientItem;
