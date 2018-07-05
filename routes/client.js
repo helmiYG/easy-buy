@@ -1,11 +1,43 @@
 const express = require('express')
 const router = express.Router()
+const aps = express()
 const models = require('../models')
 const bcrypt = require('bcrypt'); 
 const saltRounds = 10;
 const plainText = 'not_bacon';
 
-router.get('/',(req,res) => {
+var session = require('express-session')
+aps.set('trust proxy', 1)
+
+router.post('/ceklogin',(req,res) => {
+    models.Client.findAll({
+        attributes : ['password'],where : {username : req.body.username}
+    })
+    .then(kode => {
+        var password = req.body.password
+        var newPass = bcrypt.compareSync(password, kode[0].password)
+        // req.session.client = 
+        // res.send(newPass)
+        if(newPass === true){
+            req.session.client = kode
+            res.redirect('/homelogin')
+        }else{
+            res.redirect('/login')
+        }
+        console.log(req.session.client);
+        
+    })
+})
+
+var sessionChecker = (req, res, next) => {
+    if (!req.session.client) {
+        res.redirect('/');
+    } else {
+        next();
+    }    
+};
+
+router.get('/',sessionChecker,(req,res) => {
     models.Client.findAll({
         order : [
             ["id","ASC"]
@@ -18,15 +50,15 @@ router.get('/',(req,res) => {
 
 
 
-router.get('/addClient',(req,res) => {
+router.get('/addClient',sessionChecker,(req,res) => {
     res.render('../views/client/register')
 })
 
 router.post('/',(req,res) => {
     models.Client.create(req.body)
-    .then(function(client){
+    .then(function(){
         // res.render('../views/client/client',{dataClient:client})
-        res.redirect('/client')
+        res.redirect('/')
     })
     .catch(err => {
         // res.send(err.message)
@@ -34,21 +66,7 @@ router.post('/',(req,res) => {
     })
 })
 
-router.post('/ceklogin',(req,res) => {
-    models.Client.findAll({
-        attributes : ['password'],where : {username : req.body.username}
-    })
-    .then(kode => {
-        var password = req.body.password
-        var newPass = bcrypt.compareSync(password, kode[0].password)
-        // res.send(newPass)
-        if(newPass === true){
-            res.redirect('/homelogin')
-        }else{
-            res.redirect('/login')
-        }
-    })
-})
+
 
 router.get('/editClient/:id',(req,res) => {
     models.Client.findById(req.params.id)
@@ -76,6 +94,11 @@ router.get('/deleteClient/:id',(req,res)=> {
     .then(function(){
         res.redirect('/client')
     })
+})
+
+router.get('/logout',(req,res)=> {
+    req.session.destroy()
+    res.redirect('/')
 })
 
 module.exports = router

@@ -41,9 +41,9 @@
             <tr>
               <td><%= client.id %></td>
               <td><%= client.name %></td>
-              <td><%= client.address %></td>
+              <td><%= helper(client.address) %></td>
               <td><%= client.phoneNumber %></td>
-              <td><%= client.saldo %></td>
+              <td><%= helperRp(client.saldo) %></td>
               <td><a href="/client/editClient/<%= client.id %>">edit akun</a> || 
                   <a href="/client/deleteClient/<%= client.id %>">delete akun</a>
             </td>

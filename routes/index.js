@@ -6,7 +6,8 @@ router.get('/',(req,res) => {
 })
 
 router.get('/homeLogin',(req,res) => {
-    res.send('masuk home login')
+    // res.send('masuk home login')
+    res.render('homeLogin')
 })
 
 
