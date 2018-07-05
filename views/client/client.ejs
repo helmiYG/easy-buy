@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+        </style>
+</head>
+<body>
+    <h1>DATA CLIENT</h1>
+    <h2><a href="/">home page</a></h2>
+    
+    <h3><a href="/client/addClient">add data</a></h3>
+    <table>
+        <tr>
+          <th>id</th>
+          <th>name</th>
+          <th>address</th>
+          <th>phone number</th>
+          <th>saldo</th>
+            <th>action</th>
+        </tr>
+        <% dataClient.forEach(function(client){%>
+            <tr>
+              <td><%= client.id %></td>
+              <td><%= client.name %></td>
+              <td><%= client.address %></td>
+              <td><%= client.phoneNumber %></td>
+              <td><%= client.saldo %></td>
+              <td><a href="/client/editClient/<%= client.id %>">edit akun</a> || 
+                  <a href="/client/deleteClient/<%= client.id %>">delete akun</a>
+            </td>
+            </tr>
+            <% }) %>
+      </table>
+</body>
+</html>

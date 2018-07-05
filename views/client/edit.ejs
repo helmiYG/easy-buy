@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>edit client</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <h1>edit client</h1>
+    <h3><a href="/client">back</a></h3>
+    
+    <form action="/client/editClient/<%= dataClient.id%>" method="post">
+        Name:<br>
+        <input type="text" name="name" value="<%= dataClient.name %>">
+        <br>
+        Address:<br>
+        <input type="text" name="address" value="<%= dataClient.address %>">
+        <br>
+        Phone Number : <br>
+        <input type="text" name="phoneNumber" value="<%= dataClient.phoneNumber %>">
+        <br>
+        Saldo : <br>
+        <input type="text" name="saldo" value="<%= dataClient.saldo %>">
+        <br>
+        <input type="submit" value="Submit">
+      </form>
+</body>
+</html>
