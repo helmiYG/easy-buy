@@ -1,6 +1,9 @@
 const express = require('express')
 const router = express.Router()
 const models = require('../models')
+const bcrypt = require('bcrypt'); 
+const saltRounds = 10;
+const plainText = 'not_bacon';
 
 router.get('/',(req,res) => {
     models.Client.findAll({
@@ -25,25 +28,25 @@ router.post('/',(req,res) => {
         // res.render('../views/client/client',{dataClient:client})
         res.redirect('/client')
     })
+    .catch(err => {
+        // res.send(err.message)
+        res.render('../views/client/register',{err : err.message})
+    })
 })
 
 router.post('/ceklogin',(req,res) => {
-    models.Client.findOne({
-        where : {username : req.body.username,
-                password : req.body.password}
+    models.Client.findAll({
+        attributes : ['password'],where : {username : req.body.username}
     })
-    .then(function(data){
-        // console.log(data);
-        if(data.length === null){
-            res.redirect('/login')
-        }else{
+    .then(kode => {
+        var password = req.body.password
+        var newPass = bcrypt.compareSync(password, kode[0].password)
+        // res.send(newPass)
+        if(newPass === true){
             res.redirect('/homelogin')
+        }else{
+            res.redirect('/login')
         }
-        
-    })
-    .catch(err => {
-        // res.send('err')
-        res.redirect('/login')
     })
 })
 

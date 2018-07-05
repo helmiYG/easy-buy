@@ -8,7 +8,9 @@
 </head>
 <body>
     <h1>REGISTER</h1>
-
+    <% if (typeof err !== 'undefined') { %>
+        <h3><%= err %></h3>
+     <% } %>
     <form action="/client" method="post">
         Name:<br>
         <input type="text" name="name">
