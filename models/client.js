@@ -13,7 +13,22 @@ module.exports = (sequelize, DataTypes) => {
                                       }
                                     },
     saldo: DataTypes.INTEGER,
-    username : DataTypes.STRING,
+    username : {type:DataTypes.STRING,
+              validate : { isUnique : function(username, next) {
+                Client.find({
+                    where: {
+                      name:username,
+                    }
+                  })
+                  .then(function(usrnameValidation){
+                    if(usrnameValidation !== null) {
+                      next("this username was exist !")
+                    } else {
+                      next()
+                    }
+                  })
+                }
+              }},
     password : DataTypes.STRING
   }, { 
     hooks : { beforeCreate : function(Client){

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>konfirmasi pemesanan</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+        <h1>Konfirmasi Pemesanan</h1>
+        <h3>
+        </h3>
+        <form action="/client/buy/<%= itemKey.id %>/item" method="POST">
+            Saldo Anda:
+            <input type="text" name="itemName" value="<%= saldo %>" readonly>
+            <br>
+            <br> Item Name:
+            <br>
+            <input type="text" name="itemName" value="<%= itemKey.itemName %>" readonly>
+            <br> Price :
+            <br>
+            <input type="text" name="price" value="<%= itemKey.price %>" readonly>
+            <br> Down Payment :
+            <br>
+            <input type="text" name="downPayment" value="<%= itemKey.downPayment %>" readonly>
+            <br>
+            <br>
+            <input type="Submit" value="Full Payment">
+            <input type="Submit" value="down Payment">
+        </form>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <a href="/item">back</a>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>Account</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <br>
+    <br>
+    <br>
+    <h1>Your Account</h1>
+    <br> Name:
+    <br>
+    <input type="text" name="itemName" value="ade" readonly>
+    <br> Address :
+    <br>
+    <input type="text" name="price" value="jakarta" readonly>
+    <br> Phone Number :
+    <br>
+    <input type="text" name="downPayment" value="0822119900" readonly>
+    <br> Deposit :
+    <br>
+    <input type="text" name="downPayment" value="230000000" readonly>
+    <br>
+    <br>
+    <br>
+    <div class="w3-container">
+        <div class="w3-responsive">
+            <table class="w3-table-all">
+                <tr>
+                    <th>Item Name</th>
+                    <th>Price</th>
+                    <th>Payment Status</th>
+                    <th>Delivery Status</th>
+                    <!-- <th>payment status</th> -->
+                </tr>
+                <tr>
+                    <td>dummy</td>
+                    <td>dummy</td>
+                    <td>dummy</td>
+                    <td>dummy</td>
+                </tr>
+            </table>
+            <p>-------------------------------------------------------------------------------------------- </p>
+            <br>
+            <br>
+            <table class="table">
+                <tr>
+                    <th>Item ID</th>
+                    <th>Purchase Price</th>
+                    <th>Order Date</th>
+                    <th>Max repayment Date</th>
+                    <th>Payment Status</th>
+                    <th>item Arrival Date</th>
+                </tr>
+               
+                    <tr>
+                        <td>
+                            <%= item.id %>
+                        </td>
+                        <td>
+                            <%= item.purchasePrice %>
+                        </td>
+                        <td>
+                            <%= item.orderDate %>
+                        </td>
+                        <td>
+                            <%= item.maxRepaymentDate %>
+                        </td>
+                        <td>
+                            <%= item.paymentStatus %>
+                        </td>
+                        <td>
+                            <%= item.itemArrivalDate %>
+                        </td>
+                    </tr>
+                    
+            </table>
+        </div>
+        <br>
+        <br>
+        <a href="/client">back</a>
+</body>
+</html>

@@ -3,6 +3,8 @@ const app = express()
 const models = require('./models')
 const bodyParser = require('body-parser')
 var session = require('express-session')
+var cookieParser = require('cookie-parser');
+app.use(cookieParser());
 
 app.set('trust proxy', 1)
 
@@ -13,7 +15,10 @@ app.use(bodyParser.urlencoded());
 app.use(session({
     secret: 'keyboard cat',
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
+    cookie: {
+        expires: 600000
+    }
     }   
   )
 )
@@ -26,6 +31,8 @@ app.locals.helperRp = require('./helper/Rp')
 var registerRouter = require('./routes/register')
 app.use('/register',registerRouter)
 
+var itemRouter = require('./routes/item')
+app.use('/item',itemRouter)
 
 var loginRouter = require('./routes/login')
 app.use('/login',loginRouter)
